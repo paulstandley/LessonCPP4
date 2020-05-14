@@ -9,20 +9,82 @@
 
 
 /*
-Write a function called calculate() that takes two integers and a char representing one 
-of the following mathematical operations: +, -, *, /, or % (modulus). 
-Use a switch statement to perform the appropriate mathematical operation on the integers,
-and return the result. 
-If an invalid operator is passed into the function, the function should print an error. 
-For the division operator, do an integer division.
+Define an enum class named Animal that contains the following animals: 
+pig, chicken, goat, cat, dog, ostrich. 
+Write a function named getAnimalName() that takes an Animal parameter
+and uses a switch statement to return the name for that animal as a std::string.
+Write another function named printNumberOfLegs() that uses a switch statement to print
+the number of legs each animal walks on.
+Make sure both functions have a default case that prints an error message. 
+Call printNumberOfLegs() from main() with a cat and a chicken.
 */
 
+enum class Animal
+{
+	pig, 
+	chicken, 
+	goat, 
+	cat, 
+	dog, 
+	ostrich
+};
 
+std::string getAnimalName(Animal animal)
+{
+	switch (animal)
+	{
+	case Animal::pig: return "Pig";
+		break;
+	case Animal::chicken: return "Chicken";
+		break;
+	case Animal::goat: return "Goat";
+		break;
+	case Animal::cat: return "Cat";
+		break;
+	case Animal::dog: return "Dog";
+		break;
+	case Animal::ostrich: return "Ostrich";
+		break;
+	default: return "Error";
+		break;
+	}
+} 
+
+void printNumberOfLegs(std::string name, int number_legs)
+{
+	
+	switch (number_legs)
+	{
+	case 2:
+	{
+		if (name == "Chicken")
+			std::cout << "A " << name << " has " << number_legs << " legs." << '\n';
+		if (name == "Ostrich")
+			std::cout << "A " << name << " has " << number_legs << " legs." << '\n';
+		break;
+	case 4:
+	{
+		if (name == "Pig")
+			std::cout << "A " << name << " has " << number_legs << " legs." << '\n';
+		if (name == "Goat")
+			std::cout << "A " << name << " has " << number_legs << " legs." << '\n';
+		if (name == "Cat")
+			std::cout << "A " << name << " has " << number_legs << " legs." << '\n';
+		if (name == "Dog")
+			std::cout << "A " << name << " has " << number_legs << " legs." << '\n';
+		break;
+	}
+	default: std::cout << "Error" << '\n';
+		break;
+	}
+	}
+}
 
 int main()
 {
 
-	run_calculate();
+	printNumberOfLegs("Cat", 4);
+	printNumberOfLegs("Chicken", 2);
 
     return 0;
 }
