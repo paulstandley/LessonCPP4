@@ -193,3 +193,68 @@ tryAgain: // this is a stament number
 	std::cout << "The sqrt of " << num << " is " << sqrt(num) << std::endl;
 }
 
+void print_number_block()
+{
+	int count{ 1 };
+	while (count <= 50)
+	{
+		if (count < 10)
+			std::cout << "0" << count << ' ';
+		else
+			std::cout << count << ' ';
+
+		if (count % 10 == 0)
+			std::cout << '\n';
+		++count;
+	}
+}
+
+void print_triangel_block()
+{
+	int outer{ 10 };
+	while (outer <= 0)
+	{
+		int inner{ 1 };
+		while (inner >= outer)
+		{
+			std::cout << --inner << ' ';
+		}
+		std::cout << '\n';
+		--outer;
+	}
+}
+
+void print_triangel_block1()
+{
+	// There are 5 rows, we can loop from 1 to 5
+	int outer{ 1 };
+
+	while (outer <= 5)
+	{
+		// Row elements appear in descending order, so start from 5 and loop through to 1
+		int inner{ 5 };
+
+		while (inner >= 1)
+		{
+			// The first number in any row is the same as the row number
+			// So number should be printed only if it is <= the row number, space otherwise
+			if (inner <= outer)
+				std::cout << inner << ' ';
+			else
+				std::cout << "  "; // extra spaces purely for formatting purpose
+
+			--inner;
+		}
+
+		// A row has been printed, move to the next row
+		std::cout << '\n';
+
+		++outer;
+	}
+}
+
+
+
+
+
+

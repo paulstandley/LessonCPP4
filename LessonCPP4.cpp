@@ -9,41 +9,24 @@
 #include <cmath> // for sqrt() function
 
 
-void print_number_block()
+void asc2()
 {
-    int count{ 1 };
-    while (count <= 50)
+    int num{ 97 };
+    std::cout << "Program that prints out the letters a through z along with their ASCII " << '\n';
+    std::cout << '\n';
+    while (num <= 122)
     {
-        if (count < 10)
-            std::cout << "0" << count << ' ';
-        else
-            std::cout << count << ' ';
-
-        if (count % 10 == 0)
-            std::cout << '\n';
-        ++count;
+        std::cout << ' ' << static_cast<char>(num) << " ASC11 number is " << num << '\n';
+        ++num;
     }
 }
 
-void print_triangel_block()
-{
-    int outer{ 1 };
-    while (outer < 10)
-    {
-        int inner{ 1 };
-        while (inner <= outer)
-        {
-            std::cout << inner++ << ' ';
-        }
-        std::cout << '\n';
-        ++outer;
-    }
-}
+
 
 int main()
 {
-    print_number_block();
-    print_triangel_block();
+    //asc2();
+    print_triangel_block1();
 
     return 0;
 }
