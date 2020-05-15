@@ -6,85 +6,26 @@
 #include "Header.h"
 #include <string>
 #include <typeinfo>
+#include <cmath> // for sqrt() function
 
 
-/*
-Define an enum class named Animal that contains the following animals: 
-pig, chicken, goat, cat, dog, ostrich. 
-Write a function named getAnimalName() that takes an Animal parameter
-and uses a switch statement to return the name for that animal as a std::string.
-Write another function named printNumberOfLegs() that uses a switch statement to print
-the number of legs each animal walks on.
-Make sure both functions have a default case that prints an error message. 
-Call printNumberOfLegs() from main() with a cat and a chicken.
-*/
-
-enum class Animal
+void goto_function()
 {
-	pig, 
-	chicken, 
-	goat, 
-	cat, 
-	dog, 
-	ostrich
-};
+    double num;
+tryAgain: // this is a stament number
+    std::cout << "Enter a non-negative number ";
+    std::cin >> num;
 
-std::string getAnimalName(Animal animal)
-{
-	switch (animal)
-	{
-	case Animal::pig: return "Pig";
-		break;
-	case Animal::chicken: return "Chicken";
-		break;
-	case Animal::goat: return "Goat";
-		break;
-	case Animal::cat: return "Cat";
-		break;
-	case Animal::dog: return "Dog";
-		break;
-	case Animal::ostrich: return "Ostrich";
-		break;
-	default: return "Error";
-		break;
-	}
-} 
+    if (num < 0.0)
+        goto tryAgain;// goto stament
 
-void printNumberOfLegs(std::string name, int number_legs)
-{
-	
-	switch (number_legs)
-	{
-	case 2:
-	{
-		if (name == "Chicken")
-			std::cout << "A " << name << " has " << number_legs << " legs." << '\n';
-		if (name == "Ostrich")
-			std::cout << "A " << name << " has " << number_legs << " legs." << '\n';
-		break;
-	case 4:
-	{
-		if (name == "Pig")
-			std::cout << "A " << name << " has " << number_legs << " legs." << '\n';
-		if (name == "Goat")
-			std::cout << "A " << name << " has " << number_legs << " legs." << '\n';
-		if (name == "Cat")
-			std::cout << "A " << name << " has " << number_legs << " legs." << '\n';
-		if (name == "Dog")
-			std::cout << "A " << name << " has " << number_legs << " legs." << '\n';
-		break;
-	}
-	default: std::cout << "Error" << '\n';
-		break;
-	}
-	}
+    std::cout << "The sqrt of " << num << " is " << sqrt(num) << std::endl;
 }
 
 int main()
 {
+    goto_function();
 
-	printNumberOfLegs("Cat", 4);
-	printNumberOfLegs("Chicken", 2);
 
     return 0;
 }
@@ -99,3 +40,4 @@ int main()
 //   4. Use the Error List window to view errors
 //   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
 //   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+
