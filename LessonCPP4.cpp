@@ -9,23 +9,41 @@
 #include <cmath> // for sqrt() function
 
 
-void goto_function()
+void print_number_block()
 {
-    double num;
-tryAgain: // this is a stament number
-    std::cout << "Enter a non-negative number ";
-    std::cin >> num;
+    int count{ 1 };
+    while (count <= 50)
+    {
+        if (count < 10)
+            std::cout << "0" << count << ' ';
+        else
+            std::cout << count << ' ';
 
-    if (num < 0.0)
-        goto tryAgain;// goto stament
+        if (count % 10 == 0)
+            std::cout << '\n';
+        ++count;
+    }
+}
 
-    std::cout << "The sqrt of " << num << " is " << sqrt(num) << std::endl;
+void print_triangel_block()
+{
+    int outer{ 1 };
+    while (outer < 10)
+    {
+        int inner{ 1 };
+        while (inner <= outer)
+        {
+            std::cout << inner++ << ' ';
+        }
+        std::cout << '\n';
+        ++outer;
+    }
 }
 
 int main()
 {
-    goto_function();
-
+    print_number_block();
+    print_triangel_block();
 
     return 0;
 }
