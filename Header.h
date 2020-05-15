@@ -11,6 +11,7 @@ void goto_function();
 void print_number_block();
 void print_triangel_block();
 void print_triangel_block1();
+void asc2();
 
 
 #endif // !LESSONCPP_4

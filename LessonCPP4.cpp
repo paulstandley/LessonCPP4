@@ -8,25 +8,28 @@
 #include <typeinfo>
 #include <cmath> // for sqrt() function
 
-
-void asc2()
+void print_for_loop()
 {
-    int num{ 97 };
-    std::cout << "Program that prints out the letters a through z along with their ASCII " << '\n';
-    std::cout << '\n';
-    while (num <= 122)
+    int up{};
+    int down{};
+    for (up = 1, down = 9; up < 10; ++up, --down)
+            std::cout << "Up " << up << ' ' << " down " << down << '\n';
+
+    for (int iii{ 0 }, jjj{ 9 }; iii < 10; ++iii, --jjj)
+            std::cout << iii << ' ' << jjj << '\n';
+
+    for (char c{ 'a' }; c <= 'e'; ++c) // outer loop on letters
     {
-        std::cout << ' ' << static_cast<char>(num) << " ASC11 number is " << num << '\n';
-        ++num;
+        std::cout << c; // print our letter first
+        for (int i{ 0 }; i < 3; ++i) // inner loop on all numbers
+            std::cout << i;
+        std::cout << '\n';
     }
 }
 
-
-
 int main()
 {
-    //asc2();
-    print_triangel_block1();
+    print_for_loop();
 
     return 0;
 }

@@ -253,7 +253,17 @@ void print_triangel_block1()
 	}
 }
 
-
+void asc2()
+{
+	int num{ 97 };
+	std::cout << "Program that prints out the letters a through z along with their ASCII " << '\n';
+	std::cout << '\n';
+	while (num <= 122)
+	{
+		std::cout << ' ' << static_cast<char>(num) << " ASC11 number is " << num << '\n';
+		++num;
+	}
+}
 
 
 
