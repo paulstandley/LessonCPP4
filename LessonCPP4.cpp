@@ -12,27 +12,28 @@
 #include <random> // for std::mt19937
 
 
-void mt19937_mersenne()
+namespace MyRandom
 {
-    // Initialize our mersenne twister with a random seed based on the clock
-    std::mt19937 mersenne{ static_cast<std::mt19937::result_type>(std::time(nullptr)) };
-    // Create a reusable random number generator that generates uniform numbers between 1 and 6
-    std::uniform_int_distribution die{ 1, 6 };
-    // Print a bunch of random numbers
-    for (int count{ 1 }; count <= 48; ++count)
-    {
-        std::cout << die(mersenne) << '\t'; // generate a roll of the die here
-                // If we've printed 6 numbers, start a new row
-        if (count % 6 == 0)
-            std::cout << '\n';
-    }
+	// Initialize our mersenne twister with a random seed based on the clock (once at system startup)
+	std::mt19937 mersenne{ static_cast<std::mt19937::result_type>(std::time(nullptr)) };
 }
 
-
+int getRandomNumber1(int min, int max)
+{
+	std::uniform_int_distribution die{ min, max }; // we can create a distribution in any function that needs it
+	return die(MyRandom::mersenne); // and then generate a random number from our global generator
+}
+ 
+void displayGetRandomNumber()
+{
+	std::cout << getRandomNumber1(1, 6) << '\n';
+	std::cout << getRandomNumber1(1, 10) << '\n';
+	std::cout << getRandomNumber1(1, 20) << '\n';
+}
 
 int main()
 {
-    mt19937_mersenne();
+	displayGetRandomNumber();
 
     return 0;
 }
