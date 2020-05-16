@@ -19,7 +19,9 @@ void loop_continue();
 unsigned int PRNG();
 void print_PRNG();
 void random_cstlib();
-
+void randon_seed_time();
+void printRandomNumber();
+int getRandomNumber(int min, int max);
 
 
 #endif // !LESSONCPP_4
