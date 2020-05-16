@@ -284,4 +284,17 @@ void print_for_loop()
 	}
 }
 
+void loop_continue()
+{
+	for (int count{ 0 }; count < 20; ++count)
+	{
+		if ((count % 3) == 0 || (count % 5) == 0)
+		{
+			std::cout << " " << std::endl;
+			continue;// If the number is not divisible by 3 or 5, skip this iteration
+		}
+		std::cout << count << std::endl;
+	}
+}
+
 

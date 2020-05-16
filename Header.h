@@ -14,6 +14,8 @@ void print_triangel_block1();
 void asc2();
 
 void print_for_loop();
+void loop_continue();
+
 
 
 #endif // !LESSONCPP_4
