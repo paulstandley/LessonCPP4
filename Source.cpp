@@ -265,6 +265,23 @@ void asc2()
 	}
 }
 
+void print_for_loop()
+{
+	int up{};
+	int down{};
+	for (up = 1, down = 9; up < 10; ++up, --down)
+		std::cout << "Up " << up << ' ' << " down " << down << '\n';
 
+	for (int iii{ 0 }, jjj{ 9 }; iii < 10; ++iii, --jjj)
+		std::cout << iii << ' ' << jjj << '\n';
+
+	for (char c{ 'a' }; c <= 'e'; ++c) // outer loop on letters
+	{
+		std::cout << c; // print our letter first
+		for (int i{ 0 }; i < 3; ++i) // inner loop on all numbers
+			std::cout << i;
+		std::cout << '\n';
+	}
+}
 
 

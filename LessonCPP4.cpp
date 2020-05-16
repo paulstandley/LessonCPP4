@@ -8,28 +8,22 @@
 #include <typeinfo>
 #include <cmath> // for sqrt() function
 
-void print_for_loop()
+void loop_continue()
 {
-    int up{};
-    int down{};
-    for (up = 1, down = 9; up < 10; ++up, --down)
-            std::cout << "Up " << up << ' ' << " down " << down << '\n';
-
-    for (int iii{ 0 }, jjj{ 9 }; iii < 10; ++iii, --jjj)
-            std::cout << iii << ' ' << jjj << '\n';
-
-    for (char c{ 'a' }; c <= 'e'; ++c) // outer loop on letters
+    for (int count{ 0 }; count < 20; ++count)
     {
-        std::cout << c; // print our letter first
-        for (int i{ 0 }; i < 3; ++i) // inner loop on all numbers
-            std::cout << i;
-        std::cout << '\n';
+        if ((count % 3) == 0 || (count % 5) == 0)
+        {
+            std::cout << " " << std::endl;
+            continue;// If the number is not divisible by 3 or 5, skip this iteration
+        }     
+        std::cout << count << std::endl;
     }
 }
 
 int main()
 {
-    print_for_loop();
+    loop_continue();
 
     return 0;
 }

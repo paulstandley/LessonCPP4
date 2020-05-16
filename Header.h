@@ -13,6 +13,8 @@ void print_triangel_block();
 void print_triangel_block1();
 void asc2();
 
+void print_for_loop();
+
 
 #endif // !LESSONCPP_4
 
