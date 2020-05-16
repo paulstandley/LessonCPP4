@@ -22,6 +22,7 @@ void random_cstlib();
 void randon_seed_time();
 void printRandomNumber();
 int getRandomNumber(int min, int max);
+void mt19937_mersenne();
 
 
 #endif // !LESSONCPP_4

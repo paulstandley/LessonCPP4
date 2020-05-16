@@ -9,34 +9,30 @@
 #include <cmath> // for sqrt() function
 #include <cstdlib> // for std::rand() and std::srand()
 #include <ctime> // for std::time()
+#include <random> // for std::mt19937
 
-// Generate a random number between min and max (inclusive)
-// Assumes std::srand() has already been called
-// Assumes max - min <= RAND_MAX
-int getRandomNumber(int min, int max)
-{
-    // set initial seed value to system clock
-    std::srand(static_cast<unsigned int>(std::time(nullptr)));
-    static constexpr double fraction{ 1.0 / (RAND_MAX + 1.0) }; 
-    // static used for efficiency, so we only calculate this value once
-    // evenly distribute the random number across our range
-    return min + static_cast<int>((max - min + 1) * (std::rand() * fraction));
-}
 
-void printRandomNumber()
+void mt19937_mersenne()
 {
-    for (int count{ 1 }; count <= 100; ++count)
+    // Initialize our mersenne twister with a random seed based on the clock
+    std::mt19937 mersenne{ static_cast<std::mt19937::result_type>(std::time(nullptr)) };
+    // Create a reusable random number generator that generates uniform numbers between 1 and 6
+    std::uniform_int_distribution die{ 1, 6 };
+    // Print a bunch of random numbers
+    for (int count{ 1 }; count <= 48; ++count)
     {
-        std::cout << getRandomNumber(1 , 9) << '\t';
-        // If we've printed 5 numbers, start a new row
-        if (count % 5 == 0)
+        std::cout << die(mersenne) << '\t'; // generate a roll of the die here
+                // If we've printed 6 numbers, start a new row
+        if (count % 6 == 0)
             std::cout << '\n';
     }
 }
 
+
+
 int main()
 {
-    printRandomNumber();
+    mt19937_mersenne();
 
     return 0;
 }
