@@ -16,6 +16,10 @@ void asc2();
 void print_for_loop();
 void loop_continue();
 
+unsigned int PRNG();
+void print_PRNG();
+void random_cstlib();
+
 
 
 #endif // !LESSONCPP_4
