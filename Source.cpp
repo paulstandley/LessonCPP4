@@ -390,4 +390,24 @@ void mt19937_mersenne()
 	}
 }
 
+namespace MyRandom
+{
+	// Initialize our mersenne twister with a random seed based on the clock (once at system startup)
+	std::mt19937 mersenne{ static_cast<std::mt19937::result_type>(std::time(nullptr)) };
+}
+
+int getRandomNumber1(int min, int max)
+{
+	std::uniform_int_distribution die{ min, max }; // we can create a distribution in any function that needs it
+	return die(MyRandom::mersenne); // and then generate a random number from our global generator
+}
+
+void displayGetRandomNumber()
+{
+	std::cout << getRandomNumber1(1, 6) << '\n';
+	std::cout << getRandomNumber1(1, 10) << '\n';
+	std::cout << getRandomNumber1(1, 20) << '\n';
+}
+
+
 

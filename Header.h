@@ -24,6 +24,17 @@ void printRandomNumber();
 int getRandomNumber(int min, int max);
 void mt19937_mersenne();
 
+/*
+namespace MyRandom
+{
+	// Initialize our mersenne twister with a random seed based on the clock (once at system startup)
+	std::mt19937 mersenne{ static_cast<std::mt19937::result_type>(std::time(nullptr)) };
+}
+*/
+
+int getRandomNumber1(int min, int max);
+void displayGetRandomNumber();
+
 
 #endif // !LESSONCPP_4
 

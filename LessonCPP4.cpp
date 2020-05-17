@@ -11,29 +11,76 @@
 #include <ctime> // for std::time()
 #include <random> // for std::mt19937
 
-
-namespace MyRandom
+double getDoubleCalculator()
 {
-	// Initialize our mersenne twister with a random seed based on the clock (once at system startup)
-	std::mt19937 mersenne{ static_cast<std::mt19937::result_type>(std::time(nullptr)) };
+	while (true)
+	{
+		std::cout << "Enter a double value: ";
+		double value;
+		std::cin >> value;
+		// Check for failed extraction
+		if (std::cin.fail()) // has previous extractoin failed?
+		{
+			// yep handel faillure
+			std::cin.clear();// put back in normal operation mode
+			std::cin.ignore(32767, '\n');// remove bad input
+			std::cout << "No do it again a double is a number like 2.3 OK!\n";
+		}
+		else
+		{
+			std::cin.ignore(32767, '\n');// remove any extaneous inputs; 
+			// the user can't enter a meaningless double value, 
+			// so we don't need to worry about validating that
+			return value;
+		}
+	}
 }
 
-int getRandomNumber1(int min, int max)
+char getOperatorCalculator()
 {
-	std::uniform_int_distribution die{ min, max }; // we can create a distribution in any function that needs it
-	return die(MyRandom::mersenne); // and then generate a random number from our global generator
+	while (true)
+	{
+		std::cout << "Enter one of the following: +, -, *, or /: ";
+		char value;
+		std::cin >> value;
+		// Chars can accept any single input character,
+		// so no need to check for an invalid extraction here
+		std::cin.ignore(32767, '\n');// remove any extraneous inputs
+		// Check whether the user entered meaningful input
+		if (value == '+' || value == '-' || value == '*' || value == '/')
+			return value;
+		else
+			std::cout << "No do it again +, -, *, or / OK!\n";
+	}
 }
- 
-void displayGetRandomNumber()
+
+void printResultsCalculator(double x, char op, double y)
 {
-	std::cout << getRandomNumber1(1, 6) << '\n';
-	std::cout << getRandomNumber1(1, 10) << '\n';
-	std::cout << getRandomNumber1(1, 20) << '\n';
+	if (op == '+')
+		std::cout << x << " + " << y << " is " << x + y << '\n';
+	else if (op == '-')
+		std::cout << x << " - " << y << " is " << x - y << '\n';
+	else if (op == '*')
+		std::cout << x << " * " << y << " is " << x * y << '\n';
+	else if (op == '/')
+		std::cout << x << " / " << y << " is " << x / y << '\n';
+	else // Being robust means handling unexpected parameters as well, even though getOperator() guarantees op is valid in this particular program
+		std::cout << "Something went wrong got an invalid operator.";
 }
+
+void runCalculator()
+{
+	double x{ getDoubleCalculator() };
+	char op{ getOperatorCalculator() };
+	double y{ getDoubleCalculator() };
+	printResultsCalculator(x, op, y);
+}
+
 
 int main()
 {
-	displayGetRandomNumber();
+ 
+	runCalculator();
 
     return 0;
 }
