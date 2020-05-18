@@ -49,7 +49,13 @@ double calculateHeight(double initialHeight, int secondsPassed);
 void printHeight(double height, int secondsPassed);
 void runTowerFall();
 
-
+// game guess nuber between 1 and 100
+int get_random_number(const int min, const int max);
+int get_user_number_game(const int try_number);
+int check_guess(const int guess, const int answer);
+char play_again();
+int game_loop();
+void play_game();
+void test_func_game();
 
 #endif // !LESSONCPP_4
-
