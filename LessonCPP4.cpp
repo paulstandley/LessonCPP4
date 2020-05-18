@@ -11,76 +11,56 @@
 #include <ctime> // for std::time()
 #include <random> // for std::mt19937
 
-double getDoubleCalculator()
+
+// gets initial height from user and returns it
+double getInitialHeight()
 {
-	while (true)
+	std::cout << "Enter the height of the tower in meters: ";
+	double initialHeight;
+	std::cin >> initialHeight;
+	return initialHeight;
+}
+
+// Returns height from ground after "secondsPassed" seconds
+double calculateHeight(double initialHeight, int secondsPassed)
+{
+	// Using formula: [ s = u * t + (a * t^2) / 2 ], here u(initial velocity) = 0
+	double distanceFallen{ (myConstants::gravity * secondsPassed * secondsPassed) / 2.0 };
+	double currentHeight{ initialHeight - distanceFallen };
+
+	return currentHeight;
+}
+
+// Prints height every second till ball has reached the ground
+void printHeight(double height, int secondsPassed)
+{
+	if (height > 0.0)
 	{
-		std::cout << "Enter a double value: ";
-		double value;
-		std::cin >> value;
-		// Check for failed extraction
-		if (std::cin.fail()) // has previous extractoin failed?
-		{
-			// yep handel faillure
-			std::cin.clear();// put back in normal operation mode
-			std::cin.ignore(32767, '\n');// remove bad input
-			std::cout << "No do it again a double is a number like 2.3 OK!\n";
-		}
-		else
-		{
-			std::cin.ignore(32767, '\n');// remove any extaneous inputs; 
-			// the user can't enter a meaningless double value, 
-			// so we don't need to worry about validating that
-			return value;
-		}
+		std::cout << "At " << secondsPassed << " seconds, the ball is at height:\t" << height <<
+			" meters\n";
 	}
+	else
+		std::cout << "At " << secondsPassed << " seconds, the ball is on the ground.\n";
 }
 
-char getOperatorCalculator()
+
+void runTowerFall() 
 {
-	while (true)
+	const double initialHeight{ getInitialHeight() };
+	int seconds{ 0 };
+	double height;
+	do
 	{
-		std::cout << "Enter one of the following: +, -, *, or /: ";
-		char value;
-		std::cin >> value;
-		// Chars can accept any single input character,
-		// so no need to check for an invalid extraction here
-		std::cin.ignore(32767, '\n');// remove any extraneous inputs
-		// Check whether the user entered meaningful input
-		if (value == '+' || value == '-' || value == '*' || value == '/')
-			return value;
-		else
-			std::cout << "No do it again +, -, *, or / OK!\n";
-	}
+		height = calculateHeight(initialHeight, seconds);
+		printHeight(height, seconds);
+		++seconds;
+	} while (height > 0.0);
 }
-
-void printResultsCalculator(double x, char op, double y)
-{
-	if (op == '+')
-		std::cout << x << " + " << y << " is " << x + y << '\n';
-	else if (op == '-')
-		std::cout << x << " - " << y << " is " << x - y << '\n';
-	else if (op == '*')
-		std::cout << x << " * " << y << " is " << x * y << '\n';
-	else if (op == '/')
-		std::cout << x << " / " << y << " is " << x / y << '\n';
-	else // Being robust means handling unexpected parameters as well, even though getOperator() guarantees op is valid in this particular program
-		std::cout << "Something went wrong got an invalid operator.";
-}
-
-void runCalculator()
-{
-	double x{ getDoubleCalculator() };
-	char op{ getOperatorCalculator() };
-	double y{ getDoubleCalculator() };
-	printResultsCalculator(x, op, y);
-}
-
 
 int main()
 {
  
-	runCalculator();
+	runTowerFall();
 
     return 0;
 }

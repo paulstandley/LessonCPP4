@@ -35,6 +35,21 @@ namespace MyRandom
 int getRandomNumber1(int min, int max);
 void displayGetRandomNumber();
 
+double getDoubleCalculator();
+char getOperatorCalculator();
+void printResultsCalculator(double x, char op, double y);
+void runCalculator();
+
+namespace myConstants
+{
+	constexpr double gravity{ 9.8 }; // in meters/second squared
+}
+double getInitialHeight();
+double calculateHeight(double initialHeight, int secondsPassed);
+void printHeight(double height, int secondsPassed);
+void runTowerFall();
+
+
 
 #endif // !LESSONCPP_4
 
